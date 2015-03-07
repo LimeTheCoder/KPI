@@ -4,7 +4,7 @@ const int degree = 1000;
 const int NumOfDigits = 400;
 
 int main(){
-	char mass[400];
+	char mass[NumOfDigits];
 	char tmp = 0;
 	int sum = 0;
 
