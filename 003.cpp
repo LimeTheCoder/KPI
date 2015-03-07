@@ -20,6 +20,9 @@ int main(){
 
 bool isPrime(int n) {
 	int sqr = 0;
+        
+        if(n == 1 || n == 2)
+           return true;
 
 	if (n % 2 == 0) 
 		return false;
