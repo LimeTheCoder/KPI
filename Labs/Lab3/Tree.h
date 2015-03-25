@@ -11,12 +11,17 @@ typedef Node* PNode;
 class Tree {
 public:
 	void show();
-	void search();
+	void PrintSearchRes();
 	void Insert(Student);
+	void deleteByTask();
 
 private:
 	PNode root = NULL;
-	void InorderTreeSearch(PNode);
+	
+	void Search(PNode);
 	void PreorderTreeWalk(PNode);
 	void Tree_Insert(PNode &, Student);
+	void DeleteNode(PNode &);
+	PNode Tree_Min_Parent(PNode);
+	bool dell(PNode &);
 };
