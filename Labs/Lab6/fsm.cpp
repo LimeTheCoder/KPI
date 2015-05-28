@@ -65,6 +65,8 @@ void FSM::handleEvent(Event event) {
 	case q2:
 		if (event == UPPERCASE)
 			state = q3;
+		else if (event == LOWERCASE)
+			state = q2;
 		else
 			state = ERROR;
 		break;

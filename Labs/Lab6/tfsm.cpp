@@ -23,7 +23,7 @@ TFSM::TFSM() : FSM() {
 
 	table.addTransition(q2, SLASH, ERROR);
 	table.addTransition(q2, UPPERCASE, q3);
-	table.addTransition(q2, LOWERCASE, ERROR);
+	table.addTransition(q2, LOWERCASE, q2);
 	table.addTransition(q2, ANY, ERROR);
 	table.addTransition(q2, EOS, ERROR);
 
