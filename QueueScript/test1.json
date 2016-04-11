@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "smooth-aura-125512",
+  "private_key_id": "04cd1f0e29b3fd46f6d7be9bbfb071559da0af28",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCcLbFULeOqgVnd\nCBAq06EYfPlxlv5oDqsSlCS1pOrekryVulFJGyzTHpk7m4aC1NiHxBearPg9rVlC\nHOqyCHKiQz24X77N5YH+WVKboZWgQofqZ2GK7b4bf+tq90jrzBSZtcPO/DvI37gD\nTvruec4HpS6bK5h/FOTRYqj6GWHWw4kEH4PJb+tQVY7BCOxWXVAf1DJfX7pb2Fbc\nkQG0n+K2vwQyOYHCFi+khfeyUEVuHbDylcGqwr1bmEpsrYzDc+eIPiXMVsGFxsP1\nAFXFREkiicUluP002xRCyFMAiS2R3m+BddcdVKct1CQHtCNDmdgyOd/rTSQ/d3JK\nbO9DdayzAgMBAAECggEBAIGLBQOl7KmJEVjdT0u2rnD5eI5XiD4XrJ6Ecs6YNJjZ\nbcNj//h7qfqT7tYacsAifFhgtpN91YqTNu43vhReHXep/o/oGwP90o1+2Z5tsQZ1\nKPetOKNb/8wfls3qv3mWlZ/JvNj7Lzu3FZLo+ArGzbZZtQbQanU+h22GQFLyqszP\npL16aK1hAUL9QEeBDLuiO/1qrvOEEhNCDbT3BiWzVxSfk4M/br5XeRzaWd9WSZp1\nveC/NHkS82wCeKIYEfi+2MQTNLUyeYysO/Fpm7BtzK0gOdrbWJW9MeoUrjvUkCJk\nQEyZMT309o3ejCiNrDaM4kwY68DuJnvYQD2tDBOmXIECgYEA5syUzK2G9lslEoCE\n48YhpL0LkRSBufO7Ghu3MdZojO4rYx7aIqY9+OC/5/tm2WJaV6DhBaW1FIBBDJlc\nMiyxgKp8TE5hBwQk/BTap7ktEm42TqLVCPXEfcxoQ8G9TlOFHyFWG6+CmmlJBbgy\nWmIbU3/Pk01/tkOxv5qz4yIsDnkCgYEArTtGkgAZHJKjpEcj57oE7gi/Tcam+Fjz\nEyCZCM9dg8jYwwHgqXOY9ef2er2UWReO8RSJMg2u/9pLupUwVOVroTXvZQmWHauc\nsRfq2HWcVQ51aaZRYhAxkINhMDVTq79AUqttxElcG0v/ctG9cGaOacE+clH0Rmpk\nLS1EliEgGYsCgYEAuO/BY+jANnN+Vz8IPQOsPbcFp7EI6hn1GMyQlKy7hgHqXjiA\njjcrfVuKKrb2CMaYoZLV/JJ1cQH8Hb5ddA8ABJuXkgVUFi0p/ZwwQSlOhnAtsAEm\nN1HHqw25lmGN8U9XYkRyHSkbu+MVkjGwl1/5iYTmrZ/x7/h6W4/5CM1/A/ECgYAf\nIzx4GdRpsmH/sVne2SzxrFjWnhJ9KV/n3EAluUBR49QymS/MxZ6E9QD05wa3TOjA\npLRUbuk5y/84toBNgj9qZst1GdgF1UcA/g+UgO9syoCIUQDn44lFNJhPlgZIJMRn\nF7FPSvBnZ62u8cxfW8/VaorS+bAyyAThqfVeFu4yKQKBgFBYXG0oLYn9kqwR5jQj\n0drywk3dWUIry+GS5amoBTxjSYfT8W6Fizm6e3iaytJNa4Sb61aYpLvLbxDcekVJ\nH+N54bYt2tE9JzXRCDXDuVq6i38LGo5xLHF0kPYjTSmFylfkN80kZYtblrsihzNs\n/qlzhICKtzPxya2sVMfZk4eK\n-----END PRIVATE KEY-----\n",
+  "client_email": "smooth-aura-125512@appspot.gserviceaccount.com",
+  "client_id": "101287900458346781839",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/smooth-aura-125512%40appspot.gserviceaccount.com"
+}
