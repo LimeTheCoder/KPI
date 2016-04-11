@@ -36,8 +36,14 @@ Document key(from url)
 '''
 key_to_doc = '176s_vkjtre_WwTR1CWg7gs40WRDViECGQHZHnTMLdhY'
 
+'''
+Name of file, which you got after creating google application
+'''
+generated_file = 'here path to your json file'
+
+
 scope = ['https://spreadsheets.google.com/feeds', 'https://docs.google.com/feeds']
-credentials = ServiceAccountCredentials.from_json_keyfile_name('D:\Projects\DocQueueScript\\test1.json', scope)
+credentials = ServiceAccountCredentials.from_json_keyfile_name(generated_file, scope)
 gc = gspread.authorize(credentials)
 
 sht = gc.open_by_key(key_to_doc)
