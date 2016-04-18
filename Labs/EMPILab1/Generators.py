@@ -28,11 +28,11 @@ class FibonacciGenerator:
         self.__m = m
         num = seed
         for i in range(k):
-            num = linear_congruential_method(67, 12, 7, num) % m
+            num = linear_congruential_method(6075, 106, 1283, num)
             self.__history.insert(0, num)
 
     def next(self):
-        next_num = (self.__history[0] + self.__history.pop()) % (2**self.__m)
+        next_num = (self.__history[0] + self.__history.pop()) % self.__m
         self.__history.insert(0, next_num)
         return next_num
 
@@ -95,15 +95,15 @@ def linear_congruential_method(m, a, c, x):
 
 
 class Super_Generator:
-    def __init__(self, m, a, c, seed):
-        self.__a = a
-        self.__c = c
-        self.__m = m
-        self.__gen = InvCongruentialGenerator(5, 2, 3, 1)
-        self.__x = seed
+    def __init__(self, m, a, b, c):
+        self.a = a
+        self.b = b
+        self.c = c
+        self.m = m
 
     def next(self):
-        self.__x = linear_congruential_method(self.__m, self.__a, self.__c, self.__x)
-        self.__a = self.__c
-        self.__c = self.__gen.next()
-        return self.__x
+        res = (self.a ** 3 + self.b ** 2 + self.c) % self.m
+        self.a = self.b
+        self.b = self.c
+        self.c = res
+        return res
