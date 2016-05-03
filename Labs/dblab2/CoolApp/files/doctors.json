@@ -1,0 +1,5 @@
+{
+	"doctors" : [
+	{"person_id" : "3", "hospital_id" : "1", "position" : "Therapist", "experience" : "3"},
+	{"person_id" : "5", "hospital_id" : "2", "position" : "Dentist", "experience" : "6"}
+	]}

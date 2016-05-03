@@ -1,0 +1,6 @@
+{
+	"hospitals" : [
+	{"name" : "Central city hospital", "city" : "New York", "state" : "NY", "street" : "Flowers str.", "build_no" : "8"},
+	{"name" : "Red Cross hospital", "city" : "London", "state" : "Westminster", "street" : "Leadenhall str.", "build_no" : "67"},
+	{"name" : "Student hospital", "city" : "Kyiv", "state" : "Solomianca", "street" : "Polytechnic str.", "build_no" : "23"}
+	]}

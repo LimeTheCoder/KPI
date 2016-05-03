@@ -1,0 +1,6 @@
+{
+	"SurveyResults" : [
+	{ "pacient_id" : "1", "doctor_id" : "2", "diagnosis" : "Caries", "closing_date" : "2016-03-29"},
+	{ "pacient_id" : "2", "doctor_id" : "1", "diagnosis" : "Flu", "closing_date" : "2016-04-03"},
+	{ "pacient_id" : "4", "doctor_id" : "1", "diagnosis" : "Bronchitis", "closing_date" : "2016-02-26"}
+	]}
