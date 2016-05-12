@@ -107,6 +107,19 @@ class AbstractManager(object):
 				con.close()
 
 
+	def full_text_search(self, condition):
+		try:
+			con = mdb.connect('localhost', 'laymont', 'password', 'workdb')
+			cur = con.cursor(mdb.cursors.DictCursor)
+			cur.execute("SELECT * FROM " + self.__table_name + " " + condition)
+			return cur.fetchall()
+		except mdb.Error, e:
+			print "Error %d: %s" % (e.args[0], e.args[1])
+		finally:
+			if con:
+				con.close()
+
+
 	def get_all(self):
 		return self.get_objects_where("")
 
@@ -133,16 +146,17 @@ class PersonsManager(AbstractManager):
 	def get_all(self):
 		return super(PersonsManager, self).get_all()
 
-
 	def get_by_id(self, id):
 		return super(PersonsManager, self).get_by_id(id)
-
 
 	def get_objects_where(self, condition):
 		return [Person(x) for x in super(PersonsManager, self).get_objects_where(condition)]
 
 	def get_choice_lst(self):
 		return tuple(tuple([obj.id, obj.name + " " + obj.surname]) for obj in self.get_all())
+
+	def full_text_search(self, condition):
+		return [Person(x) for x in super(PersonsManager, self).full_text_search(condition)]
 	
 
 class DoctorsManager(AbstractManager):
@@ -166,6 +180,9 @@ class DoctorsManager(AbstractManager):
 	def get_choice_lst(self):
 		return tuple(tuple([obj.id, obj.person.name + " " + obj.person.surname]) for obj in self.get_all())
 
+	def full_text_search(self, condition):
+		return [Doctor(x) for x in super(DoctorsManager, self).full_text_search(condition)]
+
 
 class HospitalsManager(AbstractManager):
 	def __init__(self):
@@ -188,6 +205,9 @@ class HospitalsManager(AbstractManager):
 	def get_choice_lst(self):
 		return tuple(tuple([obj.id, obj.name]) for obj in self.get_all())
 
+	def full_text_search(self, condition):
+		return [Hospital(x) for x in super(HospitalsManager, self).full_text_search(condition)]
+
 
 
 class SurveysManager(AbstractManager):
@@ -199,18 +219,18 @@ class SurveysManager(AbstractManager):
 	def get_all(self):
 		return super(SurveysManager, self).get_all()
 
-
 	def get_by_id(self, id):
 		return super(SurveysManager, self).get_by_id(id)
-
 
 	def get_objects_where(self, condition):
 		return [SurveyResult(x) for x in super(SurveysManager, self).get_objects_where(condition)]
 
+	def full_text_search(self, condition):
+		return [SurveyResult(x) for x in super(SurveysManager, self).full_text_search(condition)]
+
 
 
 class Person(object):
-	title = 'person'
 	fields = ["name", "surname", "middlename", "birthdate"]
 	def __init__(self, obj_list):
 		self.id = obj_list['id']
@@ -224,7 +244,6 @@ class Person(object):
 
 
 class Doctor(object):
-	title = 'doctor'
 	fields = ["person_id", "hospital_id", "position", "experience"]
 	def __init__(self, attr_list):
 		self.id = attr_list['id']
@@ -238,7 +257,6 @@ class Doctor(object):
 
 
 class Hospital(object):
-	title = 'hospital'
 	fields = ["name", "city", "state", "street", "build_no"]
 	def __init__(self, attr_list):
 		self.id = attr_list['id']
@@ -253,7 +271,6 @@ class Hospital(object):
 
 
 class SurveyResult(object):
-	title = 'survey'
 	fields = ["pacient_id", "doctor_id", "diagnosis", "closing_date"]
 	def __init__(self, attr_list):
 		self.id = attr_list['id']

@@ -6,19 +6,69 @@
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+      {% load getattribute %}
+
+      <style type="text/css">
+      .margin_class{
+         margin-top: 30px;
+         margin-bottom: 30px;
+         margin-left: 10px;
+      }
+
+      .date_margin{
+         margin-top: 5px;
+         margin-bottom: 20px;
+         margin-left: 10px;
+      }
+      </style>
    </head>
    <body>
+      <form action= {{ request.get_full_path }} method="get" role="form">
+      {% csrf_token %}
+         <input type="text" id="searchBox" size="40" class="input-medium search-query margin_class" name="q" placeholder="Search">
+         <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span> Search </button>
+         
+         <label class="radio-inline">
+            <input type="radio" name="optradio" value="word" checked="">Include word
+         </label>
+         <label class="radio-inline">
+            <input type="radio" name="optradio" value="phrase" >Contains all phrase
+         </label>
+
+         {% if title == 'survey' %}
+         <label class="checkbox-inline"><input type="checkbox" name="box" >Only open</label>
+         {% endif %}
+         </form>
+
+
+         {% if title == 'person' %}
+
+         <form class='form-inline' role="form" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+               <label for="from_date" class="date_margin">From: </label>
+               <input id="from_date" class="form-control date_margin" type="date" name="from_date">
+            </div>
+            <div class="form-group">
+               <label for="to_date" class="date_margin">To: </label>
+               <input id="to_date" class="form-control date_margin" type="date" name="to_date">
+            </div>
+            <button type="submit" class="btn btn-primary date_margin">Filter</button>
+         </form>
+
+         {% endif %}
+
       {% if objects %}
       <div class="list-group">
          {% for object in objects %}
-         <a href="{% url object.title|add:'_detail' object.id %}" class="list-group-item"><h5>{{ object }}</h5></a>
+         <a href="{% url title|add:'_detail' object.id %}" class="list-group-item"><h5>{{ object }}</h5></a>
          {% endfor %}
        </div>
       {% else %}
       <p>No objects are available.</p>
       {% endif %}
       <a type="button" class="btn btn-primary" name="add_button"
-         href="{% url objects.0.title|add:'_new' %}">Add
+         href="{% url title|add:'_new' %}">Add
       </a>
       <body>
 </html>

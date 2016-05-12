@@ -3,31 +3,96 @@ from django.http import HttpResponse, HttpResponseRedirect
 from .custom_models import ObjectsManager
 from .custom_models import Person, Hospital, Doctor
 from .forms import PersonForm, HospitalForm, DoctorForm, SurveyForm
+from django.utils.dateparse import parse_date
 
 def index(request):
 	return HttpResponse("Main list")
 
 def doctors_list(request):
-	doctors = ObjectsManager.get_doctors_manager().get_all()
-	context = { 'objects' : doctors }
+	if 'q' in request.GET and request.GET['q'] != "":
+		text = request.GET["q"]
+		print request.GET.get("optradio", None)
+		condition = "WHERE MATCH (position) AGAINST ('"
+		if request.GET.get("optradio", None) == "word":
+			text = " ".join(['+' + s for s in text.split()])
+			condition += text
+		else:
+			condition += "\"" + text +"\""
+		
+		condition += "' IN BOOLEAN MODE);"
+		doctors = ObjectsManager.get_doctors_manager().full_text_search(condition)
+	else:
+		doctors = ObjectsManager.get_doctors_manager().get_all()
+	context = { 'objects' : doctors, 'title' : "doctor" }
 	return render(request, 'CoolApp/objects_list.html', context)
 
 
 def persons_list(request):
-	persons = ObjectsManager.get_persons_manager().get_all()
-	context = { 'objects' : persons }
+	if 'q' in request.GET and request.GET['q'] != "":
+		text = request.GET["q"]
+		print request.GET.get("optradio", None)
+		condition = "WHERE MATCH (name, surname, middlename) AGAINST ('"
+		if request.GET.get("optradio", None) == "word":
+			text = " ".join(['+' + s for s in text.split()])
+			condition += text
+		else:
+			condition += "\"" + text +"\""
+		
+		condition += "' IN BOOLEAN MODE);"
+		persons = ObjectsManager.get_persons_manager().full_text_search(condition)
+	else:
+		persons = ObjectsManager.get_persons_manager().get_all()
+
+	if request.method == 'POST':
+		if 'from_date' in request.POST and 'to_date' in request.POST:
+			to_date = parse_date(request.POST['to_date'])
+			from_date = parse_date(request.POST['from_date'])
+			persons = [person for person in persons if person.birthdate >= from_date and person.birthdate <= to_date]
+	context = { 'objects' : persons, 'title' : "person" }
+
 	return render(request, 'CoolApp/objects_list.html', context)
 
 
 def surveys_list(request):
-	surveys = ObjectsManager.get_surveys_manager().get_all()
-	context = { 'objects' : surveys }
+	if 'q' in request.GET and request.GET['q'] != "":
+		text = request.GET["q"]
+		print request.GET.get("optradio", None)
+		condition = "WHERE MATCH (diagnosis) AGAINST ('"
+		if request.GET.get("optradio", None) == "word":
+			text = " ".join(['+' + s for s in text.split()])
+			condition += text
+		else:
+			condition += "\"" + text +"\""
+		
+		condition += "' IN BOOLEAN MODE);"
+		surveys = ObjectsManager.get_surveys_manager().full_text_search(condition)
+	else:
+		surveys = ObjectsManager.get_surveys_manager().get_all()
+
+	if "box" in request.GET:
+		surveys = [survey for survey in surveys if survey.closing_date != None]
+
+
+	context = { 'objects' : surveys, 'title' : "survey" }
 	return render(request, 'CoolApp/objects_list.html', context)
 
 
 def hospitals_list(request):
-	hospitals = ObjectsManager.get_hospitals_manager().get_all()
-	context = { 'objects' : hospitals }
+	if 'q' in request.GET and request.GET['q'] != "":
+		text = request.GET["q"]
+		print request.GET.get("optradio", None)
+		condition = "WHERE MATCH (name, city, street) AGAINST ('"
+		if request.GET.get("optradio", None) == "word":
+			text = " ".join(['+' + s for s in text.split()])
+			condition += text
+		else:
+			condition += "\"" + text +"\""
+		
+		condition += "' IN BOOLEAN MODE);"
+		hospitals = ObjectsManager.get_hospitals_manager().full_text_search(condition)
+	else:
+		hospitals = ObjectsManager.get_hospitals_manager().get_all()
+	context = { 'objects' : hospitals, 'title' : "hospital"}
 	return render(request, 'CoolApp/objects_list.html', context)
 
 

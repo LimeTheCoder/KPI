@@ -120,4 +120,22 @@ def gamma_test():
     plt.legend([p1, p2], ['Stirling approximation', "Numpy realization"])
     plt.show()
 
-gamma_test()
+def partition_criterion():
+    g = Super_Generator(5, 5, 2, 7)
+    theor = np.array([1, 60, 300, 240, 24])
+
+    generated_lists = []
+    for i in range(625):
+        list_of_fifth = []
+        for j in range(5):
+            list_of_fifth.append(g.next())
+        generated_lists.append(list_of_fifth)
+    partition =  [len(set(lst)) for lst in generated_lists]
+    y = []
+    for i in range(5):
+        y.append(partition.count(i + 1))
+    y = np.array(y)
+    v = sum((y - theor) ** 2 / theor.astype(float))
+    print v
+
+inv_cong_test()

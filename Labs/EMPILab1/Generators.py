@@ -59,7 +59,7 @@ class BaysDurhamGenerator:
     def __init__(self):
         self.__table = []
         self.__k = 50
-        self.__m = 83
+        self.__m = 5
         num = 7
         for i in range(self.__k):
             num = linear_congruential_method(self.__m, 12, 7, num)
