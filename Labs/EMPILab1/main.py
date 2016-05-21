@@ -4,6 +4,8 @@ import numpy as np
 from scipy.special import gamma
 import matplotlib.pyplot as plt
 
+from tests import get_partition_theor
+
 
 def mauchly_test():
     generator = MauchlyGenerator('1234012340123', 5)
@@ -120,22 +122,27 @@ def gamma_test():
     plt.legend([p1, p2], ['Stirling approximation', "Numpy realization"])
     plt.show()
 
-def partition_criterion():
-    g = Super_Generator(5, 5, 2, 7)
-    theor = np.array([1, 60, 300, 240, 24])
+
+def partition_criterion(g, m, k, w):
+    theor = get_partition_theor(m, k) * w
 
     generated_lists = []
-    for i in range(625):
-        list_of_fifth = []
-        for j in range(5):
-            list_of_fifth.append(g.next())
-        generated_lists.append(list_of_fifth)
-    partition =  [len(set(lst)) for lst in generated_lists]
+    for i in range(w):
+        list_of_k = []
+        for j in range(k):
+            list_of_k.append(g.next())
+        generated_lists.append(list_of_k)
+    partition = [len(set(lst)) for lst in generated_lists]
     y = []
     for i in range(5):
         y.append(partition.count(i + 1))
     y = np.array(y)
     v = sum((y - theor) ** 2 / theor.astype(float))
-    print v
+    return v
 
-inv_cong_test()
+#g = InvCongruentialGenerator(5, 2, 3, 1)
+#print partition_criterion(g, 5, 5, 1000)
+#g = BaysDurhamGenerator()
+#print partition_criterion(g, 50, 5, 1000)
+g = Super_Generator(10, 5, 2, 7)
+print partition_criterion(g, 10, 5, 1000)
