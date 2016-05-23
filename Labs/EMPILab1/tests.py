@@ -25,3 +25,41 @@ def get_partition_theor(d, k):
         prob_lst.append(p)
 
     return np.array(prob_lst)
+
+
+def coupon_theor(d, r=0, t=0, compute_for_t=False):
+    if compute_for_t:
+        p = 1.0 - np.math.factorial(d) / float(d**(t - 1)) * stirling(t-1, d)
+    else:
+        p = np.math.factorial(d) / float(d**r) * stirling(r-1, d-1)
+
+    return p
+
+
+def coupon_practic(gen, t, d, n):
+    count = np.zeros(t - d + 1)
+    for i in range(n):
+        occurs = np.zeros(d)
+        q, r = 0, 0
+
+        while True:
+            r += 1
+            if r >= t:
+                break
+
+            num = gen.next()
+            if occurs[num] != 0:
+                continue
+
+            occurs[num] = 1
+            q += 1
+
+            if q == d:
+                break
+
+        if r >= t:
+            count[t - d] += 1
+        else:
+            count[r - d] += 1
+
+    return count

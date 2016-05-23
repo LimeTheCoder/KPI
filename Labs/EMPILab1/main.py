@@ -1,10 +1,11 @@
-from Generators import MauchlyGenerator, FibonacciGenerator, linear_congruential_method, InvCongruentialGenerator, BaysDurhamGenerator
+from Generators import MauchlyGenerator, FibonacciGenerator, LinearCongruentialGenerator, InvCongruentialGenerator, BaysDurhamGenerator
 from Generators import Super_Generator
 import numpy as np
 from scipy.special import gamma
+from scipy import stats
 import matplotlib.pyplot as plt
 
-from tests import get_partition_theor
+from tests import get_partition_theor, coupon_practic, coupon_theor
 
 
 def mauchly_test():
@@ -23,41 +24,6 @@ def potential(b, m):
     while (b ** p) % m != 0:
         p += 1
     print "P : " + str(p)
-
-
-def linear_test1():
-    m = 6075
-    a = 106
-    c = 1283
-    s = set()
-    curr = 103
-    cnt = 0
-
-    while curr not in s:
-        s.add(curr)
-        curr = linear_congruential_method(m, a, c, curr)
-        cnt +=1
-        print curr, cnt
-
-    b = a - 1
-    potential(b, m)
-
-
-def linear_test2():
-    num = 7
-    m = 6100
-    a = 104
-    c = 1300
-
-    s = set()
-    cnt = 0
-
-    while num not in s:
-        s.add(num)
-        num = linear_congruential_method(m, a, c, num)
-        cnt += 1
-        print num, cnt
-
 
 
 def fibonacci_test():
@@ -123,6 +89,10 @@ def gamma_test():
     plt.show()
 
 
+def chi2_criterion(practic, theor, k):
+    v = sum((practic - theor) ** 2 / theor.astype(float))
+    return v, 1 - stats.chi2.cdf(v, k)
+
 def partition_criterion(g, m, k, w):
     theor = get_partition_theor(m, k) * w
 
@@ -134,15 +104,35 @@ def partition_criterion(g, m, k, w):
         generated_lists.append(list_of_k)
     partition = [len(set(lst)) for lst in generated_lists]
     y = []
-    for i in range(5):
+    for i in range(k):
         y.append(partition.count(i + 1))
     y = np.array(y)
-    v = sum((y - theor) ** 2 / theor.astype(float))
-    return v
+    print theor, y
+    return chi2_criterion(practic=y, theor=theor, k=k)
+
+def coupon_criterion(g, d, n):
+    theor = []
+    t = 3 * d
+    for i in range(t - d):
+        theor.append(coupon_theor(d, d + i))
+    theor.append(coupon_theor(d=d, t=t, compute_for_t=True))
+    theor = np.array(theor) * n
+
+    practical = coupon_practic(g, t, d, n)
+    print theor
+    print practical
+    k = t - d + 1
+    return chi2_criterion(practic=practical, theor=theor, k=k)
 
 #g = InvCongruentialGenerator(5, 2, 3, 1)
+#print coupon_criterion(g, 5, 100)
 #print partition_criterion(g, 5, 5, 1000)
 #g = BaysDurhamGenerator()
 #print partition_criterion(g, 50, 5, 1000)
-g = Super_Generator(10, 5, 2, 7)
-print partition_criterion(g, 10, 5, 1000)
+#g = Super_Generator(10, 5, 2, 7)
+#print coupon_criterion(g, 10, 100)
+#print partition_criterion(g, 10, 5, 10)
+#g = LinearCongruentialGenerator(7875, 211, 1663, 7)
+#print partition_criterion(g, 7875, 5, 1000)
+#g = LinearCongruentialGenerator(7, 4, 3, 7)
+#print coupon_criterion(g, 7, 10)

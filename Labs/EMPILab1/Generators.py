@@ -26,10 +26,9 @@ class FibonacciGenerator:
     def __init__(self, k, m, seed):
         self.__history = []
         self.__m = m
-        num = seed
+        g = LinearCongruentialGenerator(6075, 106, 1283, seed)
         for i in range(k):
-            num = linear_congruential_method(6075, 106, 1283, num)
-            self.__history.insert(0, num)
+            self.__history.insert(0, g.next())
 
     def next(self):
         next_num = (self.__history[0] + self.__history.pop()) % self.__m
@@ -60,15 +59,14 @@ class BaysDurhamGenerator:
         self.__table = []
         self.__k = 50
         self.__m = 5
-        num = 7
+        self.__g = LinearCongruentialGenerator(self.__m, 12, 7, 7)
         for i in range(self.__k):
-            num = linear_congruential_method(self.__m, 12, 7, num)
-            self.__table.append(num)
-        self.__y = linear_congruential_method(self.__m, 12, 7, num)
+            self.__table.append(self.__g.next())
+        self.__y = self.__g.next()
 
     def next(self):
         j = self.__k * self.__y / self.__m
-        self.__y = linear_congruential_method(self.__m, 12, 7, self.__y)
+        self.__y = self.__g.next()
         x = self.__table[j]
         self.__table[j] = self.__y
         return x
@@ -89,9 +87,16 @@ def inv(a, m):
     else:
         return x % m
 
+class LinearCongruentialGenerator:
+    def __init__(self, m, a, c, x):
+        self.a = a
+        self.x = x
+        self.c = c
+        self.m = m
 
-def linear_congruential_method(m, a, c, x):
-    return (a * x + c) % m
+    def next(self):
+        self.x =  (self.a * self.x + self.c) % self.m
+        return self.x
 
 
 class Super_Generator:
