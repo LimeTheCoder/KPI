@@ -57,7 +57,7 @@ class InvCongruentialGenerator:
 class BaysDurhamGenerator:
     def __init__(self):
         self.__table = []
-        self.__k = 50
+        self.__k = 25
         self.__m = 5
         self.__g = LinearCongruentialGenerator(self.__m, 12, 7, 7)
         for i in range(self.__k):

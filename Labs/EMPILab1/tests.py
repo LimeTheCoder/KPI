@@ -1,8 +1,7 @@
 import numpy as np
 
-
+# Function to compute stirling numbers
 def stirling(n,k):
-
     if n == k:
         return 1
 
@@ -11,7 +10,7 @@ def stirling(n,k):
 
     return stirling(n - 1, k - 1) + k * stirling(n - 1, k)
 
-
+# Theoretical probabilities for partiotion criteria
 def get_partition_theor(d, k):
     prob_lst = []
     denominator = d ** k
@@ -27,6 +26,7 @@ def get_partition_theor(d, k):
     return np.array(prob_lst)
 
 
+# Theoretical probabilities for coupon criteria
 def coupon_theor(d, r=0, t=0, compute_for_t=False):
     if compute_for_t:
         p = 1.0 - np.math.factorial(d) / float(d**(t - 1)) * stirling(t-1, d)
@@ -35,7 +35,7 @@ def coupon_theor(d, r=0, t=0, compute_for_t=False):
 
     return p
 
-
+# Practic frequences for coupon criteria
 def coupon_practic(gen, t, d, n):
     count = np.zeros(t - d + 1)
     for i in range(n):

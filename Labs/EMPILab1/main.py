@@ -88,10 +88,10 @@ def gamma_test():
     plt.legend([p1, p2], ['Stirling approximation', "Numpy realization"])
     plt.show()
 
-
 def chi2_criterion(practic, theor, k):
     v = sum((practic - theor) ** 2 / theor.astype(float))
     return v, 1 - stats.chi2.cdf(v, k)
+
 
 def partition_criterion(g, m, k, w):
     theor = get_partition_theor(m, k) * w
@@ -107,8 +107,9 @@ def partition_criterion(g, m, k, w):
     for i in range(k):
         y.append(partition.count(i + 1))
     y = np.array(y)
-    print theor, y
+
     return chi2_criterion(practic=y, theor=theor, k=k)
+
 
 def coupon_criterion(g, d, n):
     theor = []
@@ -119,20 +120,20 @@ def coupon_criterion(g, d, n):
     theor = np.array(theor) * n
 
     practical = coupon_practic(g, t, d, n)
-    print theor
-    print practical
     k = t - d + 1
     return chi2_criterion(practic=practical, theor=theor, k=k)
 
+
 #g = InvCongruentialGenerator(5, 2, 3, 1)
-#print coupon_criterion(g, 5, 100)
-#print partition_criterion(g, 5, 5, 1000)
+#print coupon_criterion(g, 5, 1000)
+#print partition_criterion(g, 5, 4, 1000)
 #g = BaysDurhamGenerator()
-#print partition_criterion(g, 50, 5, 1000)
+#print partition_criterion(g, 25, 4, 100)
+#print coupon_criterion(g, 25, 10)
 #g = Super_Generator(10, 5, 2, 7)
 #print coupon_criterion(g, 10, 100)
-#print partition_criterion(g, 10, 5, 10)
-#g = LinearCongruentialGenerator(7875, 211, 1663, 7)
-#print partition_criterion(g, 7875, 5, 1000)
-#g = LinearCongruentialGenerator(7, 4, 3, 7)
-#print coupon_criterion(g, 7, 10)
+#print partition_criterion(g, 10, 4, 100)
+g = LinearCongruentialGenerator(7875, 211, 1663, 7)
+print partition_criterion(g, 7875, 4, 1000)
+g = LinearCongruentialGenerator(7, 4, 3, 7)
+print coupon_criterion(g, 7, 10)
