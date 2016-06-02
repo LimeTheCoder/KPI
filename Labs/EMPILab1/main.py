@@ -5,7 +5,14 @@ from scipy.special import gamma
 from scipy import stats
 import matplotlib.pyplot as plt
 
+from numpy.random import rand
+
 from tests import get_partition_theor, coupon_practic, coupon_theor
+
+class Uniform:
+
+    def next(self):
+        return int(float(rand(1)) * 100)
 
 
 def mauchly_test():
@@ -27,7 +34,7 @@ def potential(b, m):
 
 
 def fibonacci_test():
-    f = FibonacciGenerator(16, 10, 7) # good test
+    f = FibonacciGenerator(16, 2**32, 7) # good test
     num = f.next()
     cnt = 0
     while cnt != 50:
@@ -133,7 +140,11 @@ def coupon_criterion(g, d, n):
 #g = Super_Generator(10, 5, 2, 7)
 #print coupon_criterion(g, 10, 100)
 #print partition_criterion(g, 10, 4, 100)
-g = LinearCongruentialGenerator(7875, 211, 1663, 7)
-print partition_criterion(g, 7875, 4, 1000)
-g = LinearCongruentialGenerator(7, 4, 3, 7)
-print coupon_criterion(g, 7, 10)
+#g = LinearCongruentialGenerator(7875, 211, 1663, 7)
+#print partition_criterion(g, 7875, 4, 1000)
+#g = LinearCongruentialGenerator(7, 4, 3, 7)
+#print coupon_criterion(g, 7, 10)
+#f = FibonacciGenerator(16, 2**32, 7)
+#print partition_criterion(f, 2**32, 5, 100)
+g = Uniform()
+print partition_criterion(g, 100, 5, 10000)
