@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+      
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+      {% load getattribute %}
+
+      <style type="text/css">
+      .margin_class{
+         margin-top: 30px;
+         margin-bottom: 30px;
+         margin-left: 10px;
+      }
+
+      .date_margin{
+         margin-top: 5px;
+         margin-bottom: 20px;
+         margin-left: 10px;
+      }
+      </style>
+   </head>
+
+   <body>
+
+<div class="jumbotron">
+  <center><h2>Deleted person log</h2></center> 
+</div>
+
+{% if objects %}
+<div class="container">           
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Delete date</th>
+      </tr>
+    </thead>
+    <tbody>
+     {% for object in objects %}
+      <tr>
+        <td>{{ object.name }}</td>
+        <td>{{ object.surname }}</td>
+        <td>{{ object.delete_time }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% else %}
+   <p>No objects are available.</p>
+{% endif %}
+
+</body>
+</html>

@@ -1,0 +1,8 @@
+{
+	"persons" : [
+	{"name" : "Jack", "surname" : "Mitchel", "middlename" : "Olegovich", "birthdate" : "1996-07-11"},
+	{"name" : "Tommy", "surname" : "Robertson", "middlename" : "Ivanovich", "birthdate" : "1956-12-21"},
+	{"name" : "Ryan", "surname" : "Martinez", "middlename" : "Igorovich", "birthdate" : "1972-10-01"},
+	{"name" : "Taylor", "surname" : "Swift", "middlename" : "Vasyliovich", "birthdate" : "1991-01-27"},
+	{"name" : "Jessy", "surname" : "James", "middlename" : "Martynovich", "birthdate" : "1987-01-27"}
+]}	

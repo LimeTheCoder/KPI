@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+      
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+      {% load getattribute %}
+      {% load bootstrap_tags %}
+   </head>
+
+   <body>
+   <form action= {{ request.get_full_path }} method="post" class="form-vertical" role="form">
+   {% csrf_token %}
+      {{ form|as_bootstrap }}
+      <div class="form-actions">
+      {% if add_object %}
+        <button type="submit" class="btn btn-primary" name="add_btn">Add</button>
+      {% else %}
+        <button type="submit" class="btn btn-primary" name="edit_btn">Save</button>
+        <button type="submit" class="btn btn-primary" name="delete_btn">Delete</button>
+        {% if title == 'person' %}
+        <button type="submit" class="btn btn-primary" name="delete_no_log">Delete without log</button>
+        {% endif %}
+      {% endif %}
+      </div>
+    </form>
+      <body>
+</html>
