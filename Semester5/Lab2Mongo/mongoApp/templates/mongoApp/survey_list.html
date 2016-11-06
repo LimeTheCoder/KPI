@@ -1,0 +1,106 @@
+<!DOCTYPE html> {% load staticfiles %}
+<html>
+
+<head>
+
+    <script src="{% static "jquery-2.2.4.min.js" %}"></script>
+    <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
+    <link href="{% static "css/bootstrap-theme.min.css" %}" rel="stylesheet">
+    <link href="{% static "css/core.css" %}" rel="stylesheet">
+
+    <script src="{% static "js/bootstrap.min.js" %}"></script>
+
+</head>
+
+<body>
+    <div class="jumbotron">
+        <center>
+            <h2>Surveys page</h2>
+        </center>
+    </div>
+
+    {% if error%}
+        <div class="alert alert-danger">
+            <strong>Bad request!</strong> {{ error }}
+        </div>
+    {% endif %}
+
+    {% if messages %}
+        <ul class="messages">
+            {% for msg in messages %}
+                <div class="alert alert-success">
+                    <strong>Success!</strong> {{ msg }}
+                </div>
+             {% endfor %}
+        </ul>
+    {% endif %}
+
+    {% if surveys %}
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <form method="post" class="form" role="form">
+                {% csrf_token %}
+                <div class="input-group">
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="search" id="search">
+                        </div>
+
+                        <span class="input-group-btn">
+                        <button type="submit" class="btn btn-default btn_l2margin" name="search_btn" id="search_btn">Search <span class="glyphicon glyphicon-search"></span></button>
+                        </span>
+                </div>
+                </form>
+            </div>
+        </div>
+        <br>
+        <br>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Doctor</th>
+                    <th>Pacient</th>
+                    <th>Diagnosis</th>
+                    <th>Symptoms</th>
+                    <th>Opening date</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for survey in surveys %}
+                <tr class='clickable-row' data-href="{% url 'survey_detail' survey.id %}">
+                    <td>{{ survey.doctor }}</td>
+                    <td>{{ survey.pacient }}</td>
+                    <td>{{ survey.diagnosis }}</td>
+                    <td>{{ survey.pretty_symptoms }}</td>
+                    <td>{{ survey.get_date }}</td>
+                    <td>{{ survey.pretty_closed }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+        <p>Surveys list is empty</p>
+    {% endif %}
+
+    <div class="container">
+        <div class="row">
+            <div class="span12">
+              <a type="button" class="btn btn-primary" name="add_button"
+                 href="{% url 'survey_create' %}">Create
+              </a>
+             </div>
+        </div>
+    </div>
+
+    <script>
+        jQuery(document).ready(function($) {
+            $(".clickable-row").click(function() {
+                window.document.location = $(this).data("href");
+            });
+        });
+    </script>
+</body>
+
+</html>

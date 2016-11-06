@@ -1,0 +1,60 @@
+{% load staticfiles %}
+{% load bootstrap %}
+<!DOCTYPE html>
+<html>
+	<head>
+	    <script src="{% static "jquery-2.2.4.min.js" %}"></script>
+	    <script src="{% static "js/bootstrap.min.js" %}"></script>
+	    
+	    <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
+	    <link href="{% static "css/bootstrap-theme.min.css" %}" rel="stylesheet">
+	    <link href="{% static "css/core.css" %}" rel="stylesheet">
+
+	    <title>Doctor page</title>
+	    <style type="text/css">
+	        .multiple-checkbox ul {
+	            /* Used to hide <li> elements in multiple checkbox forms */
+	            
+	            padding-left: 0px;
+	            list-style: none;
+	        }
+	    </style>
+
+	</head>
+    <body>
+	   {% if error %}
+	   	<div class="alert alert-danger">
+	  		<strong>Error!</strong> {{ error }}
+		</div>
+	   {% endif %}
+
+        <div class="container">
+            <div class="row">
+                <div class="span12">
+                    <h2>Doctor information section</h2>
+
+                    <hr />
+
+                    <form action = {{ request.get_full_path }} method="post" class="form" role="form">
+                    	{% csrf_token %}
+                        {{ doctor_form|bootstrap }}
+                        <h2>Hospital section</h2>
+
+                    	<hr />
+                    	{{ hospital_form|bootstrap }}
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                 <button type="submit" class="btn btn-primary" name="save_btn">Submit</button>
+                                 {% if edit_mode %}
+                                    <button type="submit" class="btn btn-primary" name="delete_btn">Delete</button>
+                                 {% endif %}
+                            </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </body>
+</html>
