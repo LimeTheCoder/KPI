@@ -70,6 +70,24 @@
         </div>
     </div>
 
+<form action = {{ request.get_full_path }} method="post" class="form" role="form">
+    {% csrf_token %}
+    <input type="hidden" name="page" value={{ page }}>
+    <ul class = "pager">
+    {% if has_prev %}
+       <li><button type="submit" class="btn btn-default" name="prev">Previous</button></li>
+    {% else %}
+        <li><button type="submit" class="btn btn-default disabled" name="prev" disabled>Previous</button></li>
+    {% endif %}
+
+    {% if has_next %}
+       <li><button type="submit" class="btn btn-default" name="next">Next</button></li>
+    {% else %}
+        <li><button type="submit" class="btn btn-default disabled" name="next" disabled>Next</button></li>
+    {% endif %}
+    </ul>
+</form>
+
     <script>
         jQuery(document).ready(function($) {
             $(".clickable-row").click(function() {

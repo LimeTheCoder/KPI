@@ -14,8 +14,18 @@ def stats(request):
 
 
 def doctor_list(request):
-    doctors = get_doctor_list()
-    return render(request, 'mongoApp/doctor_list.html', {'doctors': doctors})
+    page = 1
+    if request.method == 'POST':
+        print request.POST
+        page = int(request.POST['page'])
+        if 'prev' in request.POST:
+            page -= 1
+        if 'next' in request.POST:
+            page += 1
+    doctors, has_prev, has_next = get_doctor_list(page)
+    context = {'doctors': doctors, 'page' : page,
+               'has_prev' : has_prev, 'has_next' : has_next}
+    return render(request, 'mongoApp/doctor_list.html', context)
 
 
 def survey_list(request):

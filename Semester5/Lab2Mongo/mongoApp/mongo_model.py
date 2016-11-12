@@ -3,16 +3,45 @@ from bson.objectid import ObjectId
 from bson.son import SON
 from bson.code import Code
 import pymongo
-
+import redis
+from bson import json_util
 from entities import Survey, Doctor
+import datetime
 
 client = MongoClient()
 db = client.labDb
 
+redis_client = redis.StrictRedis()
+page_size = 50
 
-def get_doctor_list():
-    cursor = db.doctors.find()
-    return [Doctor(x) for x in cursor]
+
+def get_doctor_list(page):
+    cnt_key = 'doctor_cnt'
+    cnt = redis_client.get(cnt_key)
+    if not cnt:
+        cnt = db.doctors.find().count()
+        redis_client.set(cnt_key, cnt)
+
+    cnt = int(cnt)
+    has_next = (cnt > (page * page_size))
+    has_prev = (page > 1)
+
+
+    key = 'doctor' + str(page)
+    data = redis_client.get(key)
+
+    if data:
+        print 'Loaded from cache'
+        return [Doctor(x) for x in json_util.loads(data)], \
+               has_prev, has_next
+
+    data = db.doctors.find().skip((page - 1) * page_size).limit(page_size)
+    data = list(data)
+    redis_client.set(key, json_util.dumps(data))
+
+    print 'Loaded from database'
+
+    return [Doctor(x) for x in data], has_prev, has_next
 
 
 def get_survey_list():
@@ -21,10 +50,12 @@ def get_survey_list():
 
 
 def insert_doctor(doctor):
+    redis_client.flushdb()
     return db.doctors.insert_one(doctor.to_dict()).inserted_id
 
 
 def insert_survey(survey):
+    redis_client.flushdb()
     return db.surveys.insert_one(survey.to_dict()).inserted_id
 
 
@@ -39,16 +70,19 @@ def get_survey_by_id(id):
 
 
 def update_doctor(id, doctor):
+    redis_client.flushdb()
     id = ObjectId(id)
     return db.doctors.update_one({'_id' : id}, {"$set": doctor.to_dict()})
 
 
 def update_survey(id, survey):
+    redis_client.flushdb()
     id = ObjectId(id)
     return db.surveys.update_one({'_id' : id}, {"$set": survey.to_dict()})
 
 
 def delete_doctor(id):
+    redis_client.flushdb()
     id = ObjectId(id)
     for survey in db.surveys.find({'doctor_ref.$id': id}):
         delete_survey(Survey(survey).id)
@@ -56,6 +90,7 @@ def delete_doctor(id):
 
 
 def delete_survey(id):
+    redis_client.flushdb()
     id = ObjectId(id)
     return db.surveys.delete_one({'_id' : id})
 
@@ -129,3 +164,4 @@ def get_hospital_personal_cnt():
     return lst
 
 
+print datetime.datetime.now()
