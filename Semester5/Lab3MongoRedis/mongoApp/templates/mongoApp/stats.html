@@ -1,0 +1,95 @@
+{% load staticfiles %}
+{% load bootstrap %}
+<!DOCTYPE html>
+<html>
+	<head>
+	    <script src="{% static "jquery-2.2.4.min.js" %}"></script>
+	    <script src="{% static "js/bootstrap.min.js" %}"></script>
+	    
+	    <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
+	    <link href="{% static "css/bootstrap-theme.min.css" %}" rel="stylesheet">
+	    <link href="{% static "css/core.css" %}" rel="stylesheet">
+
+	    <title>Survey page</title>
+	    <style type="text/css">
+	        .multiple-checkbox ul {
+	            /* Used to hide <li> elements in multiple checkbox forms */
+	            
+	            padding-left: 0px;
+	            list-style: none;
+	        }
+	    </style>
+
+	</head>
+
+	<body>
+	    <div class="jumbotron">
+	        <center>
+	            <h2>Statistics page</h2>
+	        </center>
+    	</div>
+
+
+        {% if lst %}
+        <h3>Statistic of diagnosis</h3>
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Disease</th>
+                    <th>Count</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for disease in lst %}
+                <tr>
+                    <td>{{ disease.name }}</td>
+                    <td>{{ disease.count }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+
+        {% if hospitals %}
+        <h3>Hospitals employers count</h3>
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Hospital</th>
+                    <th>Employers count</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for hospital in hospitals %}
+                <tr>
+                    <td>{{ hospital.name }}</td>
+                    <td>{{ hospital.value }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+
+        {% if positions %}
+        <h3>Position employers count</h3>
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Position</th>
+                    <th>Employers count</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for position in positions %}
+                <tr>
+                    <td>{{ position.name }}</td>
+                    <td>{{ position.value }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+	</body>

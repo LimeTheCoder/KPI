@@ -1,0 +1,108 @@
+<!DOCTYPE html> {% load staticfiles %}
+<html>
+
+<head>
+
+    <script src="{% static "jquery-2.2.4.min.js" %}"></script>
+    <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
+    <link href="{% static "css/bootstrap-theme.min.css" %}" rel="stylesheet">
+    <link href="{% static "css/core.css" %}" rel="stylesheet">
+
+    <script src="{% static "js/bootstrap.min.js" %}"></script>
+
+</head>
+
+<body>
+    <div class="jumbotron">
+        <center>
+            <h2>Doctors page</h2>
+        </center>
+    </div>
+
+    {% if messages %}
+        <ul class="messages">
+            {% for msg in messages %}
+                <div class="alert alert-success">
+                    <strong>Success!</strong> {{ msg }}
+                </div>
+             {% endfor %}
+        </ul>
+    {% endif %}
+
+    {% if doctors %}
+    <div class="container">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Surname</th>
+                    <th>Age</th>
+                    <th>Position</th>
+                    <th>Experience</th>
+                    <th>Hospital</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for doctor in doctors %}
+                <tr class='clickable-row' data-href="{% url 'doctor_detail' doctor.id %}">
+                    <td>{{ doctor.name }}</td>
+                    <td>{{ doctor.surname }}</td>
+                    <td>{{ doctor.age }}</td>
+                    <td>{{ doctor.position }}</td>
+                    <td>{{ doctor.experience }}</td>
+                    <td>{{ doctor.hospital }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+        <p>Doctors list is empty</p>
+    {% endif %}
+  
+
+<form action = {{ request.get_full_path }} method="post" class="form" role="form">
+    {% csrf_token %}
+    
+    <div class="container">
+        <div class="row">
+            <div class="span12">
+                <a type="button" class="btn btn-primary" name="add_button"
+                 href="{% url 'doctor_create' %}">Create
+              </a>
+              <button type="submit" class="btn btn-primary" name="clear_button">Clear cache
+              </button>
+             </div>
+        </div>
+    </div>
+</form>
+
+<form action = {{ request.get_full_path }} method="post" class="form" role="form">
+    {% csrf_token %}
+    <input type="hidden" name="page" value={{ page }}>
+
+    <ul class = "pager">
+    {% if has_prev %}
+       <li><button type="submit" class="btn btn-default" name="prev">Previous</button></li>
+    {% else %}
+        <li><button type="submit" class="btn btn-default disabled" name="prev" disabled>Previous</button></li>
+    {% endif %}
+
+    {% if has_next %}
+       <li><button type="submit" class="btn btn-default" name="next">Next</button></li>
+    {% else %}
+        <li><button type="submit" class="btn btn-default disabled" name="next" disabled>Next</button></li>
+    {% endif %}
+    </ul>
+</form>
+
+    <script>
+        jQuery(document).ready(function($) {
+            $(".clickable-row").click(function() {
+                window.document.location = $(this).data("href");
+            });
+        });
+    </script>
+</body>
+
+</html>
