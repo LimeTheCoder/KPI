@@ -51,7 +51,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'Lab3Redis.urls'
+ROOT_URLCONF = 'Lab2Mongo.urls'
 
 TEMPLATES = [
     {
@@ -69,7 +69,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'Lab3Redis.wsgi.application'
+WSGI_APPLICATION = 'Lab2Mongo.wsgi.application'
 
 
 # Database
