@@ -51,6 +51,8 @@ Temporary Items
 
 ## File-based project format:
 *.iws
+*.iml
+*.class
 
 ## Plugin-specific files:
 
