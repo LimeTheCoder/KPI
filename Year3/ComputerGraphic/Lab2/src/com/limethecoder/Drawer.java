@@ -20,6 +20,9 @@ public class Drawer {
         Ship ship = new Ship();
         AnimatedShip animatedShip = new AnimatedShip(ship, availableSize);
 
+        SceneBorder sceneBorder = new ShipSceneBorder(availableSize);
+        animatedShip.setSceneBorder(sceneBorder);
+
         frame.add(animatedShip);
 
         frame.setVisible(true);

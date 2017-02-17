@@ -13,17 +13,13 @@ public class AnimatedShip extends JPanel implements ActionListener {
 
     private final static float DEFAULT_DELTA = 0.01f;
 
-    private final static Color BORDER_COLOR = Color.BLUE;
-
-    private final static int DEFAULT_BORDER_MARGIN = 10;
-    private final static int DEFAULT_BORDER_SIZE = 4;
-
     private final static Color BACKGROUND_COLOR = new Color(255, 255, 130);
 
     private Dimension frameSize;
 
     private final Ship ship;
     private Timer timer;
+    private SceneBorder sceneBorder;
 
     private float angle = 0f;
     private float scale = 1f;
@@ -46,7 +42,10 @@ public class AnimatedShip extends JPanel implements ActionListener {
         Graphics2D g2d = (Graphics2D) graphics;
 
         setBackgroundToDefault(g2d);
-        drawBorder(g2d);
+
+        if(sceneBorder != null) {
+            sceneBorder.drawBorder(g2d);
+        }
 
         initAnimation(g2d);
 
@@ -75,15 +74,11 @@ public class AnimatedShip extends JPanel implements ActionListener {
         graphics.clearRect(0, 0, frameSize.width, frameSize.height);
     }
 
-    private void drawBorder(Graphics2D g2d) {
-        BasicStroke miterStroke = new BasicStroke(DEFAULT_BORDER_SIZE,
-                BasicStroke.CAP_ROUND, BasicStroke.JOIN_MITER);
-        g2d.setStroke(miterStroke);
+    public SceneBorder getSceneBorder() {
+        return sceneBorder;
+    }
 
-        g2d.setColor(BORDER_COLOR);
-
-        g2d.drawRect(DEFAULT_BORDER_MARGIN, DEFAULT_BORDER_MARGIN,
-                frameSize.width - 2 * DEFAULT_BORDER_MARGIN,
-                frameSize.height - 2 * DEFAULT_BORDER_MARGIN);
+    public void setSceneBorder(SceneBorder sceneBorder) {
+        this.sceneBorder = sceneBorder;
     }
 }
