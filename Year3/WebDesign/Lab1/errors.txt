@@ -1,0 +1,35 @@
+Error: Text not allowed in element iframe in this context.
+From line 41, column 7; to line 41, column 8
+0">↩	    	<p>Ваш б
+Content model for element iframe:
+Text that conforms to the requirements given in the prose.
+
+Error: Text not allowed in element iframe in this context.
+From line 41, column 9; to line 41, column 49
+>↩	    	<p>Ваш браузер не підтримує елементів HTML5</p>↩	
+Content model for element iframe:
+Text that conforms to the requirements given in the prose.
+
+Error: Text not allowed in element iframe in this context.
+From line 41, column 50; to line 41, column 52
+нтів HTML5</p>↩	 	<
+Content model for element iframe:
+Text that conforms to the requirements given in the prose.
+
+Error: Text not allowed in element iframe in this context.
+At line 41, column 53
+в HTML5</p>↩	 	</
+Content model for element iframe:
+Text that conforms to the requirements given in the prose.
+
+Error: The width attribute on the table element is obsolete. Use CSS instead.
+From line 113, column 3; to line 113, column 32
+ки</h3>↩		<table width="500" border="1">↩			<c
+
+Warning: The border attribute on the table element is presentational markup. Consider using CSS instead. For example: table, td, th { border: 1px solid gray }
+From line 113, column 3; to line 113, column 32
+ки</h3>↩		<table width="500" border="1">↩			<c
+
+Warning: The date input type is not supported in all browsers. Please be sure to test, and consider using a polyfill.
+From line 191, column 6; to line 191, column 44
+<br>↩  			<input type="date" name="request-date"><br>↩↩
