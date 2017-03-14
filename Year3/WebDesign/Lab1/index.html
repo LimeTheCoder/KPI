@@ -29,7 +29,7 @@
 			<li><a href="#organs">Контролюючі органи</a></li>
 			<li><a href="#documents">Документи</a></li>
 			<li><a href="#services">Послуги</a></li>
-			<li><a href="#consumers">Клієнти</a></li>
+			<li><a href="#clients">Клієнти</a></li>
 			<li><a href="#detailed-service">Детальний список послуг</a></li>
 			<li><a href="#finances">Фінанси</a></li>
 			<li><a href="#contacts">Контакти</a></li>
@@ -85,7 +85,7 @@
 	</div>
 
 	<!--Список замовників-->
-	<div id="consumers">
+	<div id="clients">
 		<h3>Наші замовники</h3>
 		<ol>
 			<li>Dart Veider</li>
@@ -171,6 +171,21 @@
 		    Прізвище:<br> <input type="text" maxlength="50"><br>
 		    По-батькові:<br> <input type="text" maxlength="50" disabled><br>
 		    Місце роботи:<br> <input type="text" maxlength="50" readonly><br>
+		    
+		    Тип запиту:<br>
+		    <input type="radio" name="request-type" value="tech-support" checked> Технічна підтримка<br>
+			<input type="radio" name="request-type" value="user-support"> Підтримка користувача<br>
+			<input type="radio" name="request-type" value="other"> Інше<br>
+
+			Категорія користувача:<br>
+			<select>
+			  <option>Гість</option>
+			  <option selected>Зареєстрований</option>
+			  <option>Преміум-користувач</option>
+			</select>
+
+			Категорія користувача:<br>
+			<textarea rows="10" cols="45" name="text"></textarea>
 		  </fieldset>
 		</form>
 
