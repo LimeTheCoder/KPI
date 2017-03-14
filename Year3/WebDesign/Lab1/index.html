@@ -11,7 +11,7 @@
 
 <body>
 	<!-- Головна інформація -->
-	<div>
+	<div id="main-info">
 		<h1>Корпорація зла</h1>
 		<img src="images/logo.jpg" alt="Image not found" width="200" height="200">
 		<h2>Робимо речі злішими з 1835</h2>
@@ -22,16 +22,41 @@
 		</blockquote>
 	</div>
 
-	<!-- Інформація про компанію -->
+	<nav>
+		<ul>
+			<li><a href="#main-info">Головна інформація</a></li>
+			<li><a href="#about-us">Про нас</a></li>
+			<li><a href="#organs">Контролюючі органи</a></li>
+			<li><a href="#documents">Документи</a></li>
+			<li><a href="#services">Послуги</a></li>
+			<li><a href="#consumers">Клієнти</a></li>
+			<li><a href="#detailed-service">Детальний список послуг</a></li>
+			<li><a href="#finances">Фінанси</a></li>
+			<li><a href="#contacts">Контакти</a></li>
+		</ul>
+	</nav>
+
 	<div>
+		 <iframe src="https://www.epam-group.ru/" width="400" height="40">
+	    	<p>Ваш браузер не підтримує елементів HTML5</p>
+	 	</iframe>
+ 	</div>
+
+ 	<figure>
+	    <p><img src="images/drakula.jpg" alt="Can't load image" width="250" height="250" /></p>
+	    <figcaption>Портрет засновника компанії</figcaption>
+   </figure>
+
+	<!-- Інформація про компанію -->
+	<div id="about-us">
 		<h3>Про нас</h3>
 		<p>Компанія створена в <b>1835 році</b> <i>містером Дракулою</i>. <br>Офіси <u>Evil Corp</u> відкриті у всіх <sub>куточках</sub> <sup>світу</sup>.</p>
 		<p>В <strong>2016</strong> <em>році</em> <abbr title="Evil Corp">ECorp</abbr> визнана найбільш <ins>злісною</ins> компанією у <del>країні</del> світі.</p>
-		<p>За останній тиждень було здійснено більше тисячі злих вчинків.</p>
+		<p>За останній тиждень було здійснено більше тисячі <mark>злих</mark> вчинків.</p>
 	</div>
 
 	<!-- Контролюючі органи -->
-	<div>
+	<div id="organs">
 		<h3>Контролюючі органи</h3>
 		<a href="http://rada.gov.ua/">Парламент корпорації</a>
 		<a href="http://www.president.gov.ua/">Президент корпорації</a>
@@ -39,15 +64,18 @@
 	</div>
 
 	<!-- Установчі документи -->
-	<div>
+	<div id="documents">
 		<h3>Установчі документи</h3>
 		<a href="files/statut.txt">Статут компанії</a>
 		<a href="files/contract.txt">Договір про продаж душі</a>
 		<a href="files/certificate.txt">Сертифікат</a>
 	</div>
 
+	<time datetime="08:00">Початок</time> -
+	<time datetime="20:00">Кінець роботи</time>
+
 	<!-- Послуги -->
-	<div>
+	<div id="services">
 		<h3>Послуги</h3>
 		<ul>
 			<li>Викрасти конспект або лабу</li>
@@ -57,7 +85,7 @@
 	</div>
 
 	<!--Список замовників-->
-	<div>
+	<div id="consumers">
 		<h3>Наші замовники</h3>
 		<ol>
 			<li>Dart Veider</li>
@@ -67,22 +95,23 @@
 	</div>
 
 	<!--Детальний список послуг-->
-	<div>
+	<div id="detailed-service">
 		<h3>Послуги (детально)</h3>
 		<dl>
 			<dt>Викрасти конспект або лабу</dt>
-			<dd>Матан, лінійна алгебра, чисельні методи</dd>
+			<dd>Матан, <mark>лінійна алгебра</mark>, чисельні методи</dd>
 			<dt>Закинути мяч через огорожу</dt>
 			<dd>Висока огорожа, середня огорожа, маленька огорожа</dd>
 			<dt>Створити двійника, який ходить замість тебе на пари</dt>
-			<dd>Відвідує пари, здає лаби, пише контрольні.</dd>
+			<dd>Відвідує пари, здає лаби, пише <mark>контрольні</mark>.</dd>
 		</dl>
 	</div>
 
 	<!--Фінансові показники компанії-->
-	<div>
+	<div id="finances">
 		<h3>Фінансові показники</h3>
 		<table width="500" border="1">
+			<caption>Перше півріччя</caption>
 			<tr>
 				<th>Місяць</th>
 				<th>Доходи</th>
@@ -132,9 +161,24 @@
 	</div>
 
 	<!--Контакти-->
-	<div>
+	<div id="contacts">
 		<h3>Контакти</h3>
+
+		<form accept-charset="utf-8">
+		  <fieldset>
+		    <legend>Зворотній звязок:</legend>
+		    Імя:<br> <input type="text" maxlength="50"><br>
+		    Прізвище:<br> <input type="text" maxlength="50"><br>
+		    По-батькові:<br> <input type="text" maxlength="50" disabled><br>
+		    Місце роботи:<br> <input type="text" maxlength="50" readonly><br>
+		  </fieldset>
+		</form>
+
+		<details>
+			<summary>© Сахарчук Тарас, 2017</summary>
+			<p>Сайт створено студентом групи КП-41</p>
+			<p>Використані технології: <mark>HTML</mark></p>
+		</details>
 		<a href="mailto: limethecoder@gmail.com">Звязок з менеджером</a>
-		<small>© Сахарчук Тарас, 2017</small>
 	</div>
 </body>
