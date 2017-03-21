@@ -6,7 +6,24 @@
 <head>
     <meta charset="UTF-8">
     <title>Evil corp</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+
+    <style>
+	   .stole-service {
+	   	color : red;
+	   	background-color: blue;
+	   }
+
+	   .ball-service {
+	   	color : orange;
+	   	background-color: green;
+	   }
+
+	   .clone-service {
+	   	color : cyan;
+	   	background-color: yellow;
+	   }
+  </style>
 </head>
 
 <body>
@@ -22,7 +39,7 @@
 		</blockquote>
 	</div>
 
-	<nav>
+	<nav id="top-navbar">
 		<ul>
 			<li><a href="#main-info">Головна інформація</a></li>
 			<li><a href="#about-us">Про нас</a></li>
@@ -50,17 +67,17 @@
 	<!-- Інформація про компанію -->
 	<div id="about-us">
 		<h3>Про нас</h3>
-		<p>Компанія створена в <b>1835 році</b> <i>містером Дракулою</i>. <br>Офіси <u>Evil Corp</u> відкриті у всіх <sub>куточках</sub> <sup>світу</sup>.</p>
-		<p>В <strong>2016</strong> <em>році</em> <abbr title="Evil Corp">ECorp</abbr> визнана найбільш <ins>злісною</ins> компанією у <del>країні</del> світі.</p>
-		<p>За останній тиждень було здійснено більше тисячі <mark>злих</mark> вчинків.</p>
+		<p class="large-font">Компанія створена в <b>1835 році</b> <i>містером Дракулою</i>. <br>Офіси <u>Evil Corp</u> відкриті у всіх <sub>куточках</sub> <sup>світу</sup>.</p>
+		<p class="middle-font">В <strong>2016</strong> <em>році</em> <abbr title="Evil Corp">ECorp</abbr> визнана найбільш <ins>злісною</ins> компанією у <del>країні</del> світі.</p>
+		<p id="small-font">За останній тиждень було здійснено більше тисячі <mark>злих</mark> вчинків.</p>
 	</div>
 
 	<!-- Контролюючі органи -->
 	<div id="organs">
 		<h3>Контролюючі органи</h3>
-		<a href="http://rada.gov.ua/">Парламент корпорації</a>
+		<a href="http://rada.com.ua/">Парламент корпорації</a>
 		<a href="http://www.president.gov.ua/">Президент корпорації</a>
-		<a href="http://www.minfin.gov.ua/">Міністерство фінансів корпорації</a>
+		<a href="http://www.minfin.ua/">Міністерство фінансів корпорації</a>
 	</div>
 
 	<!-- Установчі документи -->
@@ -78,9 +95,9 @@
 	<div id="services">
 		<h3>Послуги</h3>
 		<ul>
-			<li>Викрасти конспект або лабу</li>
-			<li>Закинути мяч через огорожу</li>
-			<li>Створити двійника, який ходить замість тебе на пари</li>
+			<li class="stole-service">Викрасти конспект або лабу</li>
+			<li class="ball-service">Закинути мяч через огорожу</li>
+			<li class="clone-service">Створити двійника, який ходить замість тебе на пари</li>
 		</ul>
 	</div>
 
@@ -98,12 +115,12 @@
 	<div id="detailed-service">
 		<h3>Послуги (детально)</h3>
 		<dl>
-			<dt>Викрасти конспект або лабу</dt>
-			<dd>Матан, <mark>лінійна алгебра</mark>, чисельні методи</dd>
-			<dt>Закинути мяч через огорожу</dt>
-			<dd>Висока огорожа, середня огорожа, маленька огорожа</dd>
-			<dt>Створити двійника, який ходить замість тебе на пари</dt>
-			<dd>Відвідує пари, здає лаби, пише <mark>контрольні</mark>.</dd>
+			<dt style="color:black;background-color:yellow;">Викрасти конспект або лабу</dt>
+			<dd style="color:yellow;background-color:black;">Матан, <mark>лінійна алгебра</mark>, чисельні методи</dd>
+			<dt style="color:green;background-color:cyan;">Закинути мяч через огорожу</dt>
+			<dd style="color:cyan;background-color:green;">Висока огорожа, середня огорожа, маленька огорожа</dd>
+			<dt style="color:orange;background-color:blue;">Створити двійника, який ходить замість тебе на пари</dt>
+			<dd style="color:blue;background-color:orange;">Відвідує пари, здає лаби, пише <mark>контрольні</mark>.</dd>
 		</dl>
 	</div>
 
@@ -126,7 +143,7 @@
 			</tr>
 			<tr>
 				<td>Лютий</td>
-				<td>$63 000 000</td>
+				<td class="colored-cell">$63 000 000</td>
 				<td>$20 000 000</td>
 				<td>$43 000 000</td>
 			</tr>
@@ -167,13 +184,13 @@
 		<form accept-charset="utf-8">
 		  <fieldset>
 		    <legend>Зворотній звязок:</legend>
-		    Імя:<br> <input type="text" maxlength="50"><br>
-		    Прізвище:<br> <input type="text" maxlength="50"><br>
+		    Імя:<br> <input type="text" maxlength="50" tabindex="1" autofocus><br>
+		    Прізвище:<br> <input type="text" maxlength="50" tabindex="2" required><br>
 		    По-батькові:<br> <input type="text" maxlength="50" disabled><br>
 		    Місце роботи:<br> <input type="text" maxlength="50" readonly><br>
 		    
 		    Тип запиту:<br>
-		    <input type="radio" name="request-type" value="tech-support" checked> Технічна підтримка<br>
+		    <input type="radio" name="request-type" value="tech-support" tabindex="4" checked> Технічна підтримка<br>
 			<input type="radio" name="request-type" value="user-support"> Підтримка користувача<br>
 			<input type="radio" name="request-type" value="other"> Інше<br>
 
@@ -185,7 +202,7 @@
 			</select> <br>
 
 			Текст запиту:<br>
-			<textarea rows="5" cols="35" name="request-text"></textarea>
+			<textarea rows="5" cols="35" name="request-text" tabindex="3"></textarea>
 
 			Дата запиту:<br>
   			<input type="date" name="request-date"><br>
@@ -193,12 +210,48 @@
   			Вкладення:<br>
   			<input type="file" name="attachments"><br>
 
-  			 Стаж користувача:<br>
+  			Стаж користувача:<br>
   			<input type="number" min="0" max="70" name="experience"><br>
+
+  			Країна:<br>
+  			<input type="text" name="country" pattern="[A-Za-z]{3}"><br>
+
+  			Емейл:<br>
+  			<input type="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"><br>
+
+  			Приорітетність запиту:<br>
+  			<input type="color" name="priority" value="#ff0000"><br>
+
+  			Веб-сторінка користувача:<br>
+  			<input type="url" name="web-page"><br>
+
+  			<div contenteditable="true">
+  			Тут розміщений текст, який можна редагувати.
+  			</div><br>
 
   			<input type="submit" value="Submit"><br>
 		  </fieldset>
 		</form>
+
+		<div>
+			Listen some track<br>
+			<audio controls>
+			  <source src="files/someTrack.mp3" type="audio/mpeg">
+			</audio>
+		</div>
+
+		<div>
+			Watch some film<br>
+			<video controls>
+			  <source src="files/someVideo.mp4" type="video/mp4">
+			</video>
+		</div>
+
+		<div>
+			MyCanvas<br>
+			<canvas id="myCanvas" width="200" height="100" style="border:1px solid #000000;">
+			</canvas>
+		</div>
 
 		<details>
 			<summary>© Сахарчук Тарас, 2017</summary>

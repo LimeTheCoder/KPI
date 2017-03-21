@@ -1,0 +1,78 @@
+/* Style for first paragraph of AboutUs div */
+.large-font {
+    font-size: 2.5em;
+    background-color: #0000FF;
+}
+
+/* Style for second paragraph of AboutUs div */
+.middle-font {
+    font-size: 20px;
+    background-color: rgb(0,255,255);
+}
+
+/* Style for third paragraph of AboutUs div */
+#small-font {
+    font-size: 80%;
+    background-color: orange;
+}
+
+/* Styles for first letters for each paragraphs from AboutUs div */
+.large-font:first-letter, .middle-font:first-letter, #small-font:first-letter {
+    font-size: 200%;
+    color: red;
+} 
+
+/* Style for all urls inside organs */
+#organs a {
+	color : rgb(255,105,180);
+	opacity: 0.7;
+}
+
+/* Style for all urls inside organs containing gov.ua */
+#organs a[href*="gov.ua"] {
+	color: red;
+	font-weight: bold;
+}
+
+/* Selector for all elements */
+* {
+	margin-left: 15px;
+}
+
+/* Styling for clients part */
+#clients {
+	border-style: solid;
+    border-width: medium;
+    box-shadow: 10px 10px 5px #888888;
+}
+
+/* Styling for finances table */
+#finances table {
+	background-color: hotpink;
+}
+
+/* Color specific cell in table */
+#finances .colored-cell {
+	background-color: red
+}
+
+/* Navbar located on top of page */
+#top-navbar a {
+	font-size: 1.5em;
+	background-color: cyan;
+	color : red;
+}
+
+/* Style for visited links in navbar*/
+#top-navbar a:visited {
+	font-size: 1.2em;
+	background-color: hotpink;
+	color : green;
+}
+
+/* Style for link during interaction with cursor */
+#top-navbar a:hover {
+	font-size: 1.8em;
+	background-color: orange;
+	color : black;
+}
